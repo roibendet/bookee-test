@@ -1,0 +1,4 @@
+Client ID = dj0yJmk9VHJjOUFwZTlkQmNXJmQ9WVdrOVVIcERkM1JsTXpnbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD04YQ--
+
+
+Client Secret = b5bfebaeae731e7719b392817a3dd4c153a15afc

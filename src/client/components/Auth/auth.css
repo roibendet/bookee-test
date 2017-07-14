@@ -1,0 +1,139 @@
+.auth {
+  margin: 0 auto;
+  padding-top: 30px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.signup-logo {
+  font-size: 6.25rem;
+  text-align: center;
+  color: #2196F3;
+}
+
+.sign-title {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #2196F3;
+  margin-top: 10px;
+}
+
+
+
+.sign-username {
+  color: #2196F3;
+  font-size: 0.75rem;
+  margin-bottom: 10px;
+}
+
+.sign-username-input {
+  border: 0;
+  border-bottom: 2px solid;
+  border-bottom-color: #2196F3;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.input-error {
+  border-bottom-color: #F44336;
+}
+.title-error-empty {
+  color: #F44336;
+  position: relative;
+}
+.title-error-empty::after {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  content: "Please enter an email";
+}
+
+.title-error-no-user {
+  color: #F44336;
+  position: relative;
+}
+
+.title-error-no-user::after {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  content: "No user found with this email address";
+}
+
+.title-error-not-valid {
+  color: #F44336;
+  position: relative;
+
+}
+.title-error-not-valid::after {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  content: "Please enter a valid email";
+}
+
+
+
+
+
+
+.sign-action-title {
+  font-size: 1.38rem;
+  margin-top: 10px;
+  margin-bottom: 10%;
+}
+
+.sign-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 64px;
+
+}
+
+.sign-password {
+  color: #2196F3;
+  font-size: 0.75rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.sign-form > p,
+.sign-form > input {
+  width: 100%;
+  outline: none;
+}
+
+.sign-submit-btn {
+  background-color: #2196F3;
+  color: white;
+  text-decoration: none;
+  border: none;
+  margin-top: 20px;
+  width: 87px;
+  height: 30px;
+  align-self: center;
+  text-transform: uppercase;
+}
+
+.sign-question {
+  display: inline;
+}
+
+.sign-btn {
+  margin-left: 20px;
+  background-color: transparent;
+  border: none;
+}
+
+.sign-btn:link,
+.sign-btn:visited,
+.sign-btn:hover,
+.sign-btn:active,
+.sign-btn:focus,
+.sign-btn {
+  color: #2196F3;
+  text-decoration: none;
+}

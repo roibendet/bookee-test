@@ -1,0 +1,10 @@
+.chat {
+  outline: 1px blue solid;
+  /*position: absolute;*/
+  /*right: 0;*/
+  /*top:0;*/
+  height: 30vw;
+}
+.chatul {
+  list-style: none;
+}
