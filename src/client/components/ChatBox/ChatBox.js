@@ -33,7 +33,7 @@ export default class ChatBox extends React.Component {
   componentDidMount() {
     const that = this;
     this.socket.emit('new user', this.props.username, function (data) {
-      console.info(data);
+      // console.info(data);
 
     });
 
@@ -77,6 +77,12 @@ export default class ChatBox extends React.Component {
     })
   }
 
+  usersListCreator() {
+    return this.state.users.map((user,i) => {
+      return <li key={i}><strong>{user}</strong></li>
+    })
+  }
+
 
   render() {
 
@@ -89,7 +95,10 @@ export default class ChatBox extends React.Component {
 
             <div className="well">
               <h3>online users</h3>
-              <ul className="list-group" id="users">{this.state.users}</ul>
+              <ul className="list-group" id="users">
+
+                {this.usersListCreator()}
+                </ul>
             </div>
           </div>
 

@@ -21,13 +21,14 @@ export default class SignUp extends React.Component {
       password: e.target[1].value
     };
 
-
+console.info('here');
     const xhr = new XMLHttpRequest();
     xhr.open('post', `http://localhost:3000/CreateNewUser`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.addEventListener("load", () => {
-      this.props.singInHandler('signin', this.newUser.username);
-      this.props.signModeHandler();
+      
+      this.props.singInHandler(xhr.responseText, this.newUser.username);
+      // this.props.signModeHandler();
     });
     xhr.send(JSON.stringify(this.newUser));
   }

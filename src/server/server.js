@@ -1,72 +1,73 @@
+// Global App Settings
 const express = require('express');
 const app = express();
+
+// Helpers
 const port = process.env.PORT || 3000;
 const fs = require('fs');
-const os = require('os');
-// const cors = require('cors');
-
 const bodyParser = require('body-parser');
-
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     callback(null, true)
-//   },
-//   credentials: true
-// }));
+const path = require('path');
 app.use(bodyParser.json());
 
-
+// webSocket Settings
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
-const path = require('path');
-
-
-let webSocketusers = [];
-// users = [];
+webSocketUsers = [];
 connectios = [];
 
 
-fs.writeFileSync(__dirname + '//users/users.json', fs.readFileSync(__dirname + '/users/users.json'));
-
-
+// Create new user Handler
 app.post('/CreateNewUser', function (req, res) {
 
+  // import current signed up users
   const users = JSON.parse(fs.readFileSync(__dirname + '/users/users.json'));
+
+  // Data about new user from client
   let data = req.body;
 
-
-  users.map((user) => {
-
-    if (user.username === data.username) {
-      return res.send('error')
-    }
-
+  // check for conflict (new user vs current users)
+  let checkIfUserExist = users.map((user) => {
+    return user.username === data.username;
   });
-  users.push(data);
-  fs.writeFileSync(__dirname + '/users/users.json', JSON.stringify(users));
-  res.send('ok')
+
+
+  // Adds new user to DB
+  if (checkIfUserExist.includes(true) === false) {
+    users.push(data);
+    fs.writeFileSync(__dirname + '/users/users.json', JSON.stringify(users));
+  }
+
+  // response to client
+  let response = checkIfUserExist.includes(true) ? 'error' : 'signin';
+  res.send(response)
 
 });
 
 
+// Sign in to chat
 app.post('/SignInWithThisUser', function (req, res) {
 
+  // import current signed up users
   const users = JSON.parse(fs.readFileSync(__dirname + '/users/users.json'));
+
+  // Data about user from client
   let data = req.body;
 
-
-  users.map((user) => {
-    console.info('sign in with this user', data);
-
-
+  // user authentication
+  let check = users.map((user) => {
     if (user.username === data.username) {
-
       if (user.password === data.password) {
-        return res.send('signin')
+        return true
       }
     }
+    if (user.username !== data.username) {
+      return false
+    }
   });
-  res.send('error');
+
+  // response to client
+  let response = check.includes(true) ? 'signin' : 'error';
+  res.send(response)
 
 
 });
@@ -77,9 +78,9 @@ io.sockets.on('connection', function (socket) {
   console.info('connected: %s sockets connected', connectios.length);
 
 
-// diconnected
+  // diconnected
   socket.on('disconnect', function (data) {
-    webSocketusers.splice(webSocketusers.indexOf(socket.username), 1);
+    webSocketUsers.splice(webSocketUsers.indexOf(socket.username), 1);
     updateUserNames();
     connectios.splice(connectios.indexOf(socket, 1));
     console.info('disconnected: %s sockets connected', connectios.length);
@@ -94,12 +95,11 @@ io.sockets.on('connection', function (socket) {
   socket.on('new user', function (data, callback) {
     callback(true);
     socket.username = data;
-    webSocketusers.push(socket.username);
-    console.info(webSocketusers);
+    webSocketUsers.push(socket.username);
     updateUserNames();
   });
   function updateUserNames() {
-    io.sockets.emit('get users', webSocketusers);
+    io.sockets.emit('get users', webSocketUsers);
   }
 
 });
