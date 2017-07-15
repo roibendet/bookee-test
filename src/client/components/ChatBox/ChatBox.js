@@ -44,6 +44,12 @@ export default class ChatBox extends React.Component {
     })
 
   }
+  
+  componentDidUpdate(prevProps, prevState) {
+    if ((this.state.messages.length === 12) && (prevState.messages.length === 13)) {
+
+    }
+  }
 
 
   msgsInChatBuilder() {

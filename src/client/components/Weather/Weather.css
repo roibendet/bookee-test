@@ -1,26 +1,59 @@
 html {
   padding-bottom: 10px;
 }
+
 .container-weather {
 }
+
 .title {
   color: #2196F3;
 
 }
+
 .reactWeather {
   text-align: left;
 }
 
-
-
-
 .rw-box-right {
 
   position: absolute;
-  left: 15%;
-  top: 30%;
+  left: 20%;
+  top: 20%;
   font-size: 6rem;
 }
+
+
+.wi-day-sunny {
+  color: #ffdb00;
+}
+
+.wi-day-sleet-storm {
+  color: #262162;
+}
+
+.wi-day-thunderstorm {
+  color: #2e2991;
+}
+
+.wi-cloud {
+  color: #5c5c5c;
+}
+
+.wi-day-cloudy {
+  color: lightgoldenrodyellow;
+}
+
+.wi-day-showers {
+  color: blue;
+}
+
 .type-today {
   position: relative;
+}
+
+.current {
+  position: absolute;
+  left: 30%;
+  top: 30%;
+  font-size: 3.5rem;
 }
