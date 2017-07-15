@@ -5,11 +5,6 @@
   display: flex;
   flex-direction: column;
 }
-.signup-logo {
-  font-size: 6.25rem;
-  text-align: center;
-  color: #2196F3;
-}
 
 .sign-title {
   font-size: 2.5rem;
@@ -17,8 +12,6 @@
   color: #2196F3;
   margin-top: 10px;
 }
-
-
 
 .sign-username {
   color: #2196F3;
@@ -36,49 +29,6 @@
   position: relative;
 }
 
-.input-error {
-  border-bottom-color: #F44336;
-}
-.title-error-empty {
-  color: #F44336;
-  position: relative;
-}
-.title-error-empty::after {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  content: "Please enter an email";
-}
-
-.title-error-no-user {
-  color: #F44336;
-  position: relative;
-}
-
-.title-error-no-user::after {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  content: "No user found with this email address";
-}
-
-.title-error-not-valid {
-  color: #F44336;
-  position: relative;
-
-}
-.title-error-not-valid::after {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  content: "Please enter a valid email";
-}
-
-
-
-
-
-
 .sign-action-title {
   font-size: 1.38rem;
   margin-top: 10px;
@@ -89,7 +39,6 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 64px;
-
 }
 
 .sign-password {
@@ -97,7 +46,6 @@
   font-size: 0.75rem;
   margin-top: 10px;
   margin-bottom: 10px;
-
 }
 
 .sign-form > p,

@@ -14,34 +14,35 @@ export default class SignUp extends React.Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
 
+    e.preventDefault();
     this.newUser = {
       username: e.target[0].value,
       password: e.target[1].value
     };
 
-console.info('here');
     const xhr = new XMLHttpRequest();
     xhr.open('post', `http://localhost:3000/CreateNewUser`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.addEventListener("load", () => {
       
       this.props.singInHandler(xhr.responseText, this.newUser.username);
-      // this.props.signModeHandler();
     });
+
     xhr.send(JSON.stringify(this.newUser));
   }
-  componentDidMount() {
-  }
+
 
   render() {
+
     return (
+
       <div className="auth">
-        <i className="fa fa-mixcloud signup-logo"/>
+
         <h2 className="sign-title">Bookee Test</h2>
 
         <form className="sign-form" onSubmit={this.onSubmit}>
+
           <h4 className="sign-action-title">Create account</h4>
 
           <label htmlFor="username-input" className="sign-username">Email</label>
@@ -52,12 +53,16 @@ console.info('here');
           <input id="password-input" className="sign-username-input" type="password" placeholder="Password"/>
 
           <button className="sign-submit-btn" type="submit">Submit</button>
+
         </form>
 
 
         <div>
+
           <span className="sign-question">Already have an account ?</span>
+
           <button className="sign-btn" onClick={() => this.props.signModeHandler()} >Sign in</button>
+
         </div>
       </div>
     )

@@ -23,12 +23,17 @@ export default class ChatBox extends React.Component {
   }
 
   componentDidMount() {
+    this.webSocketHandler()
+  }
+
+
+  // dispatch to server this new user and receives a list of all connected users
+  webSocketHandler() {
     const that = this;
     this.socket.emit('new user', this.props.username, function (data) {
     });
 
     this.socket.on('get users', function (data) {
-      console.info('all users', data);
       that.setState({users: data});
     })
   }
@@ -47,7 +52,7 @@ export default class ChatBox extends React.Component {
   }
 
 
-
+  // Limits the chat board by state to fit the chat container
   chatBoardCleaner() {
     if (this.state.messages.length === 20) {
       const currentState = [].slice.call(this.state.messages);
@@ -56,7 +61,7 @@ export default class ChatBox extends React.Component {
     }
   }
 
-
+  // Receive messages from server by WebSocket, updates this.state and return message elements
   messagesInChatBuilder() {
     const that = this;
     this.socket.on('new message', function (data) {
@@ -85,6 +90,8 @@ export default class ChatBox extends React.Component {
     })
   }
 
+
+  // Returns a list of users from this.state
   onlineUsersListCreator() {
     return this.state.users.map((user, i) => {
       return <li key={i} className="user-sign"><strong>{user}</strong></li>
@@ -95,6 +102,7 @@ export default class ChatBox extends React.Component {
   render() {
 
     return (
+
       <div className="container">
 
         <div className="col-sm-6">
