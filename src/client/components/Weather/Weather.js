@@ -55,8 +55,7 @@ export default class ChatBox extends React.Component {
     const body = document.body;
     const html = document.documentElement;
     const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-    const windowBottom = windowHeight + window.pageYOffset;
-
+    const windowBottom = windowHeight + window.pageYOffset + 1;
     if (windowBottom >= docHeight) {
       this.randomCity();
     }
