@@ -11,10 +11,10 @@ instructions:
 
 
 6. First User
-* username: 'user1@user1.com'
-* password: 'user1'
+* username: user1@user1.com
+* password: user1
 
 7. Second User
-* username: 'user2@user2.com'
-* password: 'user2'
+* username: user2@user2.com
+* password: user2
 8. enjoy !
