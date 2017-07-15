@@ -2,6 +2,7 @@ import React from 'react';
 import ChatBox from '../ChatBox/ChatBox';
 import SignUp from '../Auth/Signup';
 import SignIn from '../Auth/Signin';
+import Weather from '../Weather/Weather';
 
 
 import './root.css'
@@ -45,25 +46,33 @@ export default class Root extends React.Component {
 
     return (
 
-      <div>
-        {this.state.signMode === 'in' &&
-        <SignIn signModeHandler={this.signModeHandler} singInHandler={this.singInHandler}/>}
+      <div className="row">
 
 
-        {this.state.signMode === 'up' &&
-        <SignUp signModeHandler={this.signModeHandler} singInHandler={this.singInHandler}/>}
+        <div className="col-md-6">
+          <Weather/>
+        </div>
+
+        <div className="col-md-6 my-container-chat">
+            {this.state.signMode === 'in' &&
+         <SignIn signModeHandler={this.signModeHandler} singInHandler={this.singInHandler}/>}
 
 
-        {this.state.signedIn &&
-        <ChatBox username={this.state.userID}/>}
+         {this.state.signMode === 'up' &&
+         <SignUp signModeHandler={this.signModeHandler} singInHandler={this.singInHandler}/>}
 
-        {this.state.signError &&
-        this.state.signMode === 'in' &&
-        <div className="errorMsg"> email/password are wrong</div>}
 
-        {this.state.signError &&
-        this.state.signMode === 'up' &&
-        <div className="errorMsg"> user already existent</div>}
+         {this.state.signedIn &&
+         <ChatBox username={this.state.userID}/>}
+
+         {this.state.signError &&
+         this.state.signMode === 'in' &&
+         <div className="errorMsg"> email/password are wrong</div>}
+
+         {this.state.signError &&
+         this.state.signMode === 'up' &&
+         <div className="errorMsg"> user already existent</div>}
+        </div>
 
 
       </div>

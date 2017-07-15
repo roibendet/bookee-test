@@ -1,10 +1,52 @@
 .chat {
-  outline: 1px blue solid;
-  /*position: absolute;*/
-  /*right: 0;*/
-  /*top:0;*/
-  height: 30vw;
+  /*outline: 1px blue solid;*/
+
+  height: 100%;
+  width: 100%;
 }
+
 .chatul {
   list-style: none;
 }
+
+.my-container {
+  position: fixed;
+  outline: 1px solid pink;
+  right: 0;
+  top: 0;
+  height: 100vh;
+}
+
+.well {
+  width: 100%
+}
+
+.my-form {
+  /*position: relative;*/
+}
+
+.my-input {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10vh;
+  width: 90%;
+}
+
+.relative {
+  position: relative;
+}
+
+.col-sm-6 {
+  position: inherit;
+}
+
+.list-group {
+  list-style: none;
+}
+
+.user-sign:before {
+  content: ' \25CF    ';
+  font-size: 2rem;
+color: lawngreen;
+}
+

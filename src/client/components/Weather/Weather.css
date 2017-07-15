@@ -1,0 +1,26 @@
+html {
+  padding-bottom: 10px;
+}
+.container-weather {
+}
+.title {
+  color: #2196F3;
+
+}
+.reactWeather {
+  text-align: left;
+}
+
+
+
+
+.rw-box-right {
+
+  position: absolute;
+  left: 15%;
+  top: 30%;
+  font-size: 6rem;
+}
+.type-today {
+  position: relative;
+}

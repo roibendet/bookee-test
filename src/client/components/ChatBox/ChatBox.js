@@ -38,7 +38,7 @@ export default class ChatBox extends React.Component {
     });
 
     this.socket.on('get users', function (data) {
-      console.info('all users',data);
+      console.info('all users', data);
       that.setState({users: data});
 
     })
@@ -78,8 +78,8 @@ export default class ChatBox extends React.Component {
   }
 
   usersListCreator() {
-    return this.state.users.map((user,i) => {
-      return <li key={i}><strong>{user}</strong></li>
+    return this.state.users.map((user, i) => {
+      return <li key={i} className="user-sign"><strong>{user}</strong></li>
     })
   }
 
@@ -88,61 +88,54 @@ export default class ChatBox extends React.Component {
 
     return (
       <div className="container">
-        <div className="row">
 
+        <div className="col-sm-6">
 
-          <div className="col-sm-4">
+          <div className="well">
+            <h3>Online Users</h3>
+            <ul className="list-group">
 
-            <div className="well">
-              <h3>online users</h3>
-              <ul className="list-group" id="users">
-
-                {this.usersListCreator()}
-                </ul>
-            </div>
+              {this.usersListCreator()}
+            </ul>
           </div>
 
-          <div className="col-md-4">
 
-            <div className="username-title">name of the other username</div>
+          <form className="form-horizontal my-form" onSubmit={this.onSubmit}>
 
-            <form className="form-horizontal my-form" onSubmit={this.onSubmit}>
 
-              <div className="form-group">
 
-                <div className="col-sm-10">
 
-                  <input type="text"
-                         className="form-control"
-                         placeholder="your msg here..."
-                         ref={(elm) => this.msg = elm}
-                         required
-                  />
+              <div className="chat">
 
-                </div>
+                <ul className="chatul" ref={(elm) => this.messages = elm}>
+
+                  {this.msgsInChatBuilder()}
+
+                </ul>
 
               </div>
 
-            </form>
-
-          </div>
 
 
-          <div className="col-sm-4">
+            <div className="form-group">
 
-            <div className="chat">
+              <div>
 
-              <ul className="chatul" ref={(elm) => this.messages = elm}>
+                <input type="text"
+                       className="form-control my-input"
+                       placeholder="your msg here..."
+                       ref={(elm) => this.msg = elm}
+                       required
+                />
 
-                {this.msgsInChatBuilder()}
-
-              </ul>
+              </div>
 
             </div>
 
-          </div>
+          </form>
 
         </div>
+
 
       </div>
 
