@@ -7,13 +7,14 @@ instructions:
 3. npm install
 4. npm start
 5. open in the browser at http://localhost:3000
-6. enjoy !
 
 
-- First User
+
+6. First User
 * username: 'user1@user1.com'
 * password: 'user1'
 
-- Second User
+7. Second User
 * username: 'user2@user2.com'
 * password: 'user2'
+8. enjoy !
