@@ -10,10 +10,10 @@ instructions:
 6. enjoy !
 
 
-First User
+##First User
 username: 'user1@user1.com'
 password: 'user1'
 
-Second User
+##Second User
 username: 'user2@user2.com'
 password: 'user2'
