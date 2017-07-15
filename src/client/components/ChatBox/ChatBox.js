@@ -16,9 +16,25 @@ export default class ChatBox extends React.Component {
       userMsg: null,
 
     };
+
     this.socket = io.connect();
     this.onSubmit = this.onSubmit.bind(this);
-    this.msgsInChatBuilder = this.msgsInChatBuilder.bind(this)
+    this.messagesInChatBuilder = this.messagesInChatBuilder.bind(this)
+  }
+
+  componentDidMount() {
+    const that = this;
+    this.socket.emit('new user', this.props.username, function (data) {
+    });
+
+    this.socket.on('get users', function (data) {
+      console.info('all users', data);
+      that.setState({users: data});
+    })
+  }
+
+  componentDidUpdate() {
+    this.chatBoardCleaner();
   }
 
   onSubmit(event) {
@@ -30,29 +46,18 @@ export default class ChatBox extends React.Component {
 
   }
 
-  componentDidMount() {
-    const that = this;
-    this.socket.emit('new user', this.props.username, function (data) {
-      // console.info(data);
 
-    });
 
-    this.socket.on('get users', function (data) {
-      console.info('all users', data);
-      that.setState({users: data});
-
-    })
-
-  }
-  
-  componentDidUpdate(prevProps, prevState) {
-    if ((this.state.messages.length === 12) && (prevState.messages.length === 13)) {
-
+  chatBoardCleaner() {
+    if (this.state.messages.length === 20) {
+      const currentState = [].slice.call(this.state.messages);
+      currentState.shift();
+      this.setState({messages: currentState});
     }
   }
 
 
-  msgsInChatBuilder() {
+  messagesInChatBuilder() {
     const that = this;
     this.socket.on('new message', function (data) {
       const newState = that.state.messages;
@@ -65,16 +70,13 @@ export default class ChatBox extends React.Component {
       if (that.state.messages.length > 0) {
         if (that.state.messages[that.state.messages.length - 1].data.userMsg === data.data.userMsg) {
           return;
-
         }
+
         else {
           newState.push(data);
           that.setState({messages: newState});
         }
-
       }
-
-
     });
 
     return this.state.messages.map((msg, i) => {
@@ -83,7 +85,7 @@ export default class ChatBox extends React.Component {
     })
   }
 
-  usersListCreator() {
+  onlineUsersListCreator() {
     return this.state.users.map((user, i) => {
       return <li key={i} className="user-sign"><strong>{user}</strong></li>
     })
@@ -98,30 +100,28 @@ export default class ChatBox extends React.Component {
         <div className="col-sm-6">
 
           <div className="well">
+
             <h3>Online Users</h3>
+
             <ul className="list-group">
 
-              {this.usersListCreator()}
-            </ul>
-          </div>
+              {this.onlineUsersListCreator()}
 
+            </ul>
+
+          </div>
 
           <form className="form-horizontal my-form" onSubmit={this.onSubmit}>
 
+            <div>
 
+              <ul className="chatul" ref={(elm) => this.messages = elm}>
 
+                {this.messagesInChatBuilder()}
 
-              <div className="chat">
+              </ul>
 
-                <ul className="chatul" ref={(elm) => this.messages = elm}>
-
-                  {this.msgsInChatBuilder()}
-
-                </ul>
-
-              </div>
-
-
+            </div>
 
             <div className="form-group">
 
@@ -141,7 +141,6 @@ export default class ChatBox extends React.Component {
           </form>
 
         </div>
-
 
       </div>
 
